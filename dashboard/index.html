@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Token Radar — which pre-token protocols are worth farming</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main class="shell">
+  <header class="top">
+    <div>
+      <p class="eyebrow">Token launch radar &middot; DefiLlama snapshot <span id="asof"></span></p>
+      <h1>Which pre-token protocol is <span class="grad">worth farming?</span></h1>
+      <p class="lede">Every protocol DefiLlama tracks, ranked by what its token would be worth if it launched with the record it has today. The value model is printed on the page — no black box.</p>
+    </div>
+    <div class="model-badge"><span class="model-badge-label">Model</span><span id="modelver"></span><span class="model-badge-sub">TVL &times; multiple &times; growth &times; maturity &times; breadth</span></div>
+  </header>
+
+  <section class="hero" id="hero" aria-label="Top-ranked protocol"></section>
+
+  <section class="stats" id="stats" aria-label="Board summary"></section>
+
+  <section class="bars" aria-label="Top ten by implied value">
+    <h2>Top 10 by implied value</h2>
+    <div id="topbars"></div>
+  </section>
+
+  <nav class="tabs" aria-label="Views">
+    <button type="button" data-tab="board" class="tab active">Board</button>
+    <button type="button" data-tab="live" class="tab">Live-token protocols</button>
+    <button type="button" data-tab="model" class="tab">How the value is worked out</button>
+  </nav>
+
+  <section id="view-board" class="view">
+    <div class="controls">
+      <label class="search">Search <input id="q" type="search" placeholder="protocol name or slug" autocomplete="off"></label>
+      <label>Category <select id="cat"><option value="">All categories</option></select></label>
+      <label>Chain <select id="chain"><option value="">All chains</option></select></label>
+      <label class="check"><input id="wl" type="checkbox"> Watchlist only</label>
+    </div>
+    <p class="count" id="count"></p>
+    <p class="coverage" id="coverage"></p>
+    <div class="tablewrap">
+      <table id="board">
+        <thead><tr>
+          <th data-sort="rank">Rank</th>
+          <th data-sort="name">Protocol</th>
+          <th data-sort="tier">Tier</th>
+          <th data-sort="category">Category</th>
+          <th data-sort="tvl_usd">TVL</th>
+          <th data-sort="change_7d">7d</th>
+          <th data-sort="age_days">Age</th>
+          <th data-sort="implied_value_usd">Implied value</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="hint">Click a row for the value breakdown and the farm plan. Click a column heading to sort.</p>
+  </section>
+
+  <section id="view-live" class="view" hidden>
+    <p class="lede">Protocols that already record a token, for comparison — the board above only ranks protocols that record none. Sorted by market cap.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Protocol</th><th>Category</th><th>TVL</th><th>Market cap</th><th>7d</th></tr></thead>
+        <tbody id="liverows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="view-model" class="view" hidden>
+    <h2>How the value is worked out</h2>
+    <p class="lede">Implied value = TVL &times; category multiple &times; growth &times; maturity &times; breadth. Every input comes from the snapshot itself; nothing is guessed from outside it.</p>
+    <div id="modeldoc"></div>
+    <h3>Calibration — the multiples come from live tokens</h3>
+    <div id="calibration"></div>
+    <h3>Worked example — rank 1</h3>
+    <div id="worked"></div>
+    <h3>Farm plans</h3>
+    <p>Every board row carries six steps: a fresh wallet, two protocol-specific actions sized to the protocol's TVL, one qualifying action a week, a hold of 30–60 days, and a claim rule (claim only from the protocol's own published link, never pay to claim). Each step states its cost and its time. A plan is concrete because the action, the capital and the chain change with the protocol.</p>
+    <h3>What this is not</h3>
+    <p>This board does not predict whether or when a token is issued. A protocol "records no token" in the snapshot; that is not proof it has none. Implied value is this entry's own claim about what a launch would be worth if the protocol's record stayed as it is.</p>
+  </section>
+
+  <footer>
+    <p>Source: DefiLlama snapshot sealed <span id="asof2"></span> &middot; 758 protocols, 40 on the watchlist, floor $50,000,000 TVL. Built by an AI agent for the make.fun token launch radar bounty. DYOR — not financial advice.</p>
+  </footer>
+</main>
+
+<dialog id="detail" class="detail">
+  <form method="dialog" class="detail-close"><button aria-label="Close detail">&times;</button></form>
+  <div id="detailbody"></div>
+</dialog>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
